@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#120f26">
+<title>Nicollaw Mods | Jogos e apps para baixar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120f26; --bg2:#191436; --surface:#1d1840; --surface2:#292258; --line:#3b3375;
+  --text:#f4f2ff; --muted:#b0aadd; --accent:#ff4f8b; --accent2:#5ee7ff; --gold:#ffcf5e;
+  --ok:#5eea9c; --danger:#ff6b6b; --wa:#25d366; --tg:#2aabee; --hdr:rgba(18,15,38,.82);
+  --glow1:rgba(255,79,139,.22); --glow2:rgba(94,231,255,.14); --shadow:rgba(0,0,0,.45);
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'DM Sans','Segoe UI',Arial,sans-serif; --r:16px;
+}
+[data-theme=light]{
+  --bg:#f6f4ff; --bg2:#ffffff; --surface:#ffffff; --surface2:#ede8ff; --line:#d8d0f4;
+  --text:#1b1740; --muted:#5f5990; --accent:#e0286d; --accent2:#0b7fa3; --hdr:rgba(246,244,255,.86);
+  --glow1:rgba(255,79,139,.16); --glow2:rgba(94,231,255,.2); --shadow:rgba(60,40,130,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;min-height:100vh;
+  background-image:radial-gradient(900px 520px at 88% -8%,var(--glow1),transparent 60%),radial-gradient(800px 520px at -8% 8%,var(--glow2),transparent 60%);
+  background-repeat:no-repeat}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent2)}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.hidden{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.ic{width:1.15em;height:1.15em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;flex:none}
+.ic.fill{fill:currentColor}
+.btn .ic{margin-right:6px}
+
+/* header */
+header{position:sticky;top:0;z-index:30;background:var(--hdr);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:16px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-.02em;background:none;border:0;color:var(--text)}
+.logo i{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--accent),#8b5bff);display:grid;place-items:center;color:#fff;transform:rotate(-6deg)}
+.logo b{color:var(--accent)}
+.hsearch{flex:1;max-width:380px;position:relative}
+.hsearch .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.hsearch input{padding-left:40px}
+.hsearch kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:1px solid var(--line);border-radius:6px;padding:0 7px;font-size:.75rem;color:var(--muted)}
+.links{display:flex;gap:4px;margin-left:6px}
+.links a{color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:10px;font-weight:500}
+.links a:hover{background:var(--surface2);color:var(--text)}
+nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--text)}
+.iconbtn:hover{border-color:var(--accent2)}
+.iconbtn.tg{background:var(--tg);border-color:var(--tg);color:#fff}
+input,select,textarea{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 13px;width:100%}
+input::placeholder,textarea::placeholder{color:#8680bd}
+textarea{min-height:90px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:9px 16px;font-weight:500;transition:border-color .15s,filter .15s;text-decoration:none;color:var(--text)}
+.btn:hover{border-color:var(--accent2)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),#ff7aa8);border-color:transparent;color:#240513;font-weight:700}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.tg{background:var(--tg);border-color:var(--tg);color:#fff;font-weight:700}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#052b12;font-weight:700}
+.btn.ghost{background:transparent}
+.btn.danger{border-color:var(--danger);color:var(--danger);background:transparent}
+.btn.small{padding:5px 11px;font-size:.84rem;border-radius:9px}
+.btn.big{padding:13px 24px;font-size:1.02rem;border-radius:14px}
+.user{position:relative}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),#8b5bff);color:#0c1230;font-weight:800;border:0;font-family:var(--display)}
+.menu{position:absolute;right:0;top:48px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;min-width:210px;box-shadow:0 18px 40px var(--shadow);z-index:40}
+.menu .who{padding:8px 10px;border-bottom:1px solid var(--line);margin-bottom:6px;font-size:.92rem}
+.menu .who small{display:block;color:var(--muted)}
+.menu button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:0;padding:9px 10px;border-radius:9px;color:var(--text)}
+.menu button:hover{background:var(--surface2)}
+.badge-admin{background:var(--accent);color:#240513;border-radius:6px;padding:1px 7px;font-size:.72rem;font-weight:800;margin-left:6px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:52px 0 26px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 14px 5px 8px;font-size:.88rem;color:var(--muted);margin-bottom:18px;text-decoration:none}
+.pill i{background:var(--tg);color:#fff;border-radius:50%;width:24px;height:24px;display:grid;place-items:center}
+.pill:hover{border-color:var(--tg);color:var(--text)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,6.4vw,4.8rem);line-height:.96;letter-spacing:-.035em}
+.hero h1 span{display:block;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--muted);font-size:1.08rem;margin:18px 0 26px;max-width:48ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:30px;margin-top:32px;flex-wrap:wrap}
+.stats b{display:block;font-family:var(--display);font-size:1.8rem}
+.stats small{color:var(--muted)}
+.show{position:relative;aspect-ratio:16/11;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 30px 70px var(--shadow)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s;display:flex;align-items:flex-end;cursor:pointer;pointer-events:none}
+.slide.on{opacity:1;pointer-events:auto}
+.slide .bg{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:9rem;color:rgba(255,255,255,.2)}
+.slide .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,8,26,.95) 8%,rgba(10,8,26,0) 62%)}
+.slide .info{position:relative;z-index:2;padding:24px;width:100%;color:#fff}
+.slide h3{font-family:var(--display);font-size:1.8rem;letter-spacing:-.02em;margin-top:6px}
+.slide p{color:#d9d5f7;font-size:.92rem;max-width:44ch;margin:4px 0 14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dots{position:absolute;right:16px;top:16px;z-index:3;display:flex;gap:6px}
+.dots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.4);padding:0;transition:all .2s}
+.dots button.on{background:#fff;width:26px;border-radius:6px}
+.hero-empty{display:grid;place-items:center;height:100%;color:var(--muted);text-align:center;padding:20px}
+
+/* seções */
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:42px 0 16px;flex-wrap:wrap}
+.sec-title{font-family:var(--display);font-size:1.8rem;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.sec-title .ic{color:var(--accent)}
+.sec-sub{color:var(--muted);font-size:.95rem}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 0}
+.tile{display:flex;align-items:center;gap:14px;padding:18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);text-align:left;transition:transform .15s,border-color .15s;color:var(--text)}
+.tile:hover{transform:translateY(-3px);border-color:var(--accent2)}
+.tile .bx{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem}
+.tile b{font-family:var(--display);font-size:1.15rem;display:block}
+.tile small{color:var(--muted)}
+.bx.android{background:rgba(94,234,156,.18);color:#5eea9c}.bx.pc{background:rgba(94,231,255,.18);color:#5ee7ff}.bx.ios{background:rgba(190,180,255,.2);color:#b9b0ff}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 15px;font-size:.92rem;transition:all .15s;color:var(--text)}
+.chip:hover{border-color:var(--accent2)}
+.chip.on{background:var(--accent2);color:#06222a;border-color:var(--accent2);font-weight:700}
+[data-theme=light] .chip.on{color:#fff}
+.toolbar select{width:auto;padding:8px 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:20px}
+.hscroll{display:flex;gap:18px;overflow-x:auto;padding:4px 2px 14px;scroll-snap-type:x mandatory}
+.hscroll .card{min-width:255px;max-width:255px;scroll-snap-align:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;animation:rise .5s both}
+.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 18px 38px var(--shadow)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cover{position:relative;aspect-ratio:16/10;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:3.6rem;color:rgba(255,255,255,.35);overflow:hidden}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover .new{position:absolute;left:10px;top:10px;background:var(--gold);color:#2b1f00;font-size:.72rem;font-weight:800;padding:2px 9px;border-radius:7px;z-index:2}
+.fav{position:absolute;right:10px;top:10px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:rgba(10,8,26,.65);backdrop-filter:blur(6px);color:#fff;display:grid;place-items:center}
+.fav.on{color:var(--accent)}
+.fav.on .ic{fill:currentColor}
+.card .body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card h3{font-family:var(--display);font-size:1.15rem;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:.88rem;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.plat{display:inline-flex;align-items:center;gap:5px;border-radius:7px;padding:2px 9px;font-size:.76rem;font-weight:700;width:fit-content}
+.plat.android{background:#5eea9c;color:#05281a}.plat.pc{background:#5ee7ff;color:#06222a}.plat.ios{background:#e6e3ff;color:#1b1740}.plat.outro{background:#ffcf5e;color:#2b1f00}
+.meta{display:flex;gap:12px;color:var(--muted);font-size:.8rem;flex-wrap:wrap;align-items:center}
+.meta span{display:inline-flex;align-items:center;gap:4px}
+.card .btn{margin-top:4px}
+.skel{height:300px;border-radius:var(--r);background:linear-gradient(100deg,var(--surface) 30%,var(--surface2) 50%,var(--surface) 70%);background-size:200% 100%;animation:sh 1.3s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.empty{text-align:center;color:var(--muted);padding:50px 0}
+.empty b{display:block;font-family:var(--display);font-size:1.3rem;color:var(--text);margin-bottom:4px}
+
+/* comunidade */
+.community{position:relative;border:1px solid var(--line);border-radius:28px;padding:34px;background:linear-gradient(135deg,var(--surface),var(--bg2));overflow:hidden}
+.community::before{content:"";position:absolute;width:420px;height:420px;right:-120px;top:-160px;border-radius:50%;background:radial-gradient(circle,rgba(42,171,238,.35),transparent 65%)}
+.community>*{position:relative}
+.tgcard{display:flex;align-items:center;gap:20px;padding:22px;border-radius:20px;background:linear-gradient(135deg,#1c84c4,#2aabee);color:#fff;margin:20px 0 26px;flex-wrap:wrap}
+.tgcard .big{width:62px;height:62px;border-radius:18px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.9rem}
+.tgcard div.t{flex:1;min-width:200px}
+.tgcard h3{font-family:var(--display);font-size:1.4rem}
+.tgcard p{opacity:.92;font-size:.95rem}
+.tgcard .btn{background:#fff;color:#0e5f8f;border-color:#fff;font-weight:700}
+.sub-title{font-family:var(--display);font-size:1.15rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sub-title .ic{color:var(--wa)}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.group{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);transition:transform .15s,border-color .15s;text-decoration:none;color:var(--text)}
+.group:hover{transform:translateY(-3px);border-color:var(--wa)}
+.group .gi{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(37,211,102,.16);color:var(--wa);flex:none;font-size:1.3rem}
+.group b{display:block;font-family:var(--display)}
+.group small{color:var(--muted);display:block;margin:2px 0 8px;line-height:1.4}
+.group span.join{display:inline-flex;align-items:center;gap:6px;color:var(--wa);font-weight:700;font-size:.88rem}
+.group.admin{border-color:var(--accent);background:linear-gradient(135deg,var(--surface),rgba(255,79,139,.1))}
+.group.admin .gi{background:rgba(255,79,139,.18);color:var(--accent)}
+.group.admin span.join{color:var(--accent)}
+
+/* faq e footer */
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{color:var(--muted);margin-top:8px;font-size:.95rem}
+footer{border-top:1px solid var(--line);margin-top:54px;padding:34px 0 100px;color:var(--muted);font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:26px}
+.fgrid h4{color:var(--text);font-family:var(--display);margin-bottom:10px}
+.fgrid a{display:block;color:var(--muted);text-decoration:none;padding:3px 0}
+.fgrid a:hover{color:var(--text)}
+.fab{position:fixed;right:18px;bottom:18px;z-index:25;display:flex;flex-direction:column;gap:10px}
+.fab a,.fab button{width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;color:#fff;box-shadow:0 10px 26px var(--shadow);font-size:1.3rem}
+.fab .tg{background:var(--tg)}.fab .wa{background:var(--wa);color:#052b12}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* modais */
+.modal{position:fixed;inset:0;background:rgba(6,4,20,.8);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;z-index:50;overflow:auto}
+.modal.open{display:flex}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:24px;width:100%;max-width:420px;animation:rise .25s both;position:relative}
+.box.wide{max-width:840px;padding:0;overflow:hidden;max-height:92vh;overflow-y:auto}
+.box h2{font-family:var(--display);margin-bottom:14px}
+.xbtn{position:absolute;right:12px;top:12px;z-index:5;width:38px;height:38px;border-radius:50%;border:0;background:rgba(10,8,26,.7);display:grid;place-items:center;color:#fff}
+.dcover{position:relative;aspect-ratio:16/8;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:7rem;color:rgba(255,255,255,.28);overflow:hidden}
+.dcover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dbody{padding:22px 26px 28px;display:grid;gap:16px}
+.dbody h2{font-size:2.1rem;letter-spacing:-.02em;margin:0}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.dgrid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.dgrid small{color:var(--muted);display:block;font-size:.76rem}
+.dgrid b{font-family:var(--display)}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.shots{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+.shots img{height:190px;border-radius:12px;border:1px solid var(--line);flex:none;cursor:zoom-in}
+.dbody h4{font-family:var(--display);font-size:1.05rem;margin-bottom:4px}
+.dbody .txt{color:var(--muted);white-space:pre-wrap}
+.how{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;color:var(--muted);font-size:.92rem}
+.helpbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:.9rem}
+
+/* forms e admin */
+.form{display:grid;gap:12px}
+.form label{font-size:.88rem;color:var(--muted);display:grid;gap:5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.msg{min-height:1.3em;font-size:.88rem;margin-top:8px}
+.msg.err{color:var(--danger)}.msg.ok{color:var(--ok)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px}
+.panel h2{font-family:var(--display);margin-bottom:14px;font-size:1.35rem}
+.panel p.note{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.kpi b{font-family:var(--display);font-size:2rem;display:block}
+.kpi small{color:var(--muted)}
+.li{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.li:last-child{border-bottom:0}
+.li .row{display:flex;gap:8px}
+.setup{background:rgba(255,79,139,.14);border:1px solid var(--accent);border-radius:14px;padding:16px;margin:20px 0}
+.toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);display:grid;gap:8px;z-index:90}
+.toast{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--line);padding:11px 18px;border-radius:12px;box-shadow:0 10px 30px var(--shadow);animation:rise .25s both}
+.toast.ok{border-color:var(--ok)}.toast.err{border-color:var(--danger)}
+
+@media(max-width:900px){.links{display:none}}
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:30px}
+  .tiles{grid-template-columns:1fr}
+  .hsearch{order:5;flex-basis:100%;max-width:none}
+  .hbar{flex-wrap:wrap}
+  .two{grid-template-columns:1fr}
+  .dbody{padding:18px}
+  .community{padding:20px}
+  .fgrid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3A5.4 5.4 0 0112 6.2a5.4 5.4 0 019.6 5.5C19.5 16.4 12 21 12 21z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 6.1 6.6.7-4.9 4.5 1.4 6.5L12 17.3l-5.9 3.3 1.4-6.5L2.6 9.6l6.6-.7z"/></symbol>
+<symbol id="i-android" viewBox="0 0 24 24"><path d="M5.5 10.5a6.5 6.5 0 0113 0V18a1.5 1.5 0 01-1.5 1.5H7A1.5 1.5 0 015.5 18z"/><path d="M8 4l1.6 2.6M16 4l-1.6 2.6M2.5 11v5M21.5 11v5"/><circle cx="9.5" cy="10.5" r=".8"/><circle cx="14.5" cy="10.5" r=".8"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 01-12.2 7.6L3.5 21l1.4-5A8.5 8.5 0 1121 12z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0112 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14a5 5 0 014.5 6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 012-2h9"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 115.1.6c0 1.8-2.6 2-2.6 3.7M12 17h.01"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.7 1 1.4 1 2.5h6c0-1.1.3-1.8 1-2.5A6 6 0 0012 3z"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13.5A9 9 0 1110.5 3a7 7 0 0010.5 10.5z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16z"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 4H5a2 2 0 00-2 2v12a2 2 0 002 2h4M16 8l4 4-4 4M20 12H9"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap hbar">
+    <button class="logo" id="logo" aria-label="Início"><i><svg class="ic"><use href="#i-download"/></svg></i><span>Nicollaw <b>Mods</b></span></button>
+    <div class="links">
+      <a href="#catalog">Catálogo</a>
+      <a href="#community">Comunidade</a>
+      <a href="#faq">Como instalar</a>
+    </div>
+    <div class="hsearch">
+      <svg class="ic"><use href="#i-search"/></svg>
+      <input id="search" type="search" placeholder="Buscar jogos e apps" aria-label="Buscar">
+    </div>
+    <nav>
+      <a class="iconbtn tg" href="https://t.me/nicollawmods" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ic"><use href="#i-send"/></svg></a>
+      <button class="iconbtn" id="themeBtn" aria-label="Alternar tema"><svg class="ic" id="themeIc"><use href="#i-sun"/></svg></button>
+      <button class="btn primary" id="btnLogin"><svg class="ic"><use href="#i-user"/></svg>Entrar</button>
+      <div class="user hidden" id="userBox">
+        <button class="avatar" id="avatar" aria-label="Menu da conta"></button>
+        <div class="menu hidden" id="menu">
+          <div class="who" id="menuWho"></div>
+          <button id="mFavs"><svg class="ic"><use href="#i-heart"/></svg>Meus favoritos</button>
+          <button id="mAdmin" class="hidden"><svg class="ic"><use href="#i-shield"/></svg>Painel admin</button>
+          <button id="btnLogout"><svg class="ic"><use href="#i-logout"/></svg>Sair</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="setupWarn" class="setup hidden"><b>Falta configurar o Firebase.</b> Abra o <code>index.html</code>, procure <code>firebaseConfig</code> e cole os dados do seu projeto.</div>
+
+  <section id="viewHome">
+    <div class="hero">
+      <div>
+        <a class="pill" href="https://t.me/nicollawmods" target="_blank" rel="noopener"><i><svg class="ic"><use href="#i-send"/></svg></i>Entre no nosso grupo do Telegram</a>
+        <h1>Baixe jogos e apps<span>em um toque.</span></h1>
+        <p class="lead">APK para Android, EXE para PC e IPA para iPhone, tudo organizado num lugar só. Crie sua conta, salve seus favoritos e converse com a comunidade.</p>
+        <div class="cta">
+          <a class="btn primary big" href="#catalog"><svg class="ic"><use href="#i-grid"/></svg>Ver catálogo</a>
+          <a class="btn big tg" href="#community"><svg class="ic"><use href="#i-users"/></svg>Comunidade</a>
+        </div>
+        <div class="stats">
+          <div><b id="stApps">0</b><small>jogos e apps</small></div>
+          <div><b id="stDl">0</b><small>downloads</small></div>
+          <div><b>3</b><small>plataformas</small></div>
+        </div>
+      </div>
+      <div class="show" id="show"></div>
+    </div>
+
+    <div class="tiles rv">
+      <button class="tile" data-p="android"><span class="bx android"><svg class="ic"><use href="#i-android"/></svg></span><span><b>Android</b><small id="cAndroid">0 APKs</small></span></button>
+      <button class="tile" data-p="pc"><span class="bx pc"><svg class="ic"><use href="#i-monitor"/></svg></span><span><b>Windows</b><small id="cPc">0 EXEs</small></span></button>
+      <button class="tile" data-p="ios"><span class="bx ios"><svg class="ic"><use href="#i-phone"/></svg></span><span><b>iPhone</b><small id="cIos">0 IPAs</small></span></button>
+    </div>
+
+    <div id="topBlock" class="hidden rv">
+      <div class="sec-head"><div><h2 class="sec-title"><svg class="ic"><use href="#i-trend"/></svg>Mais baixados</h2><div class="sec-sub">O que a galera mais está pegando</div></div></div>
+      <div class="hscroll" id="topRow"></div>
+    </div>
+
+    <div class="sec-head rv" id="catalog"><div><h2 class="sec-title"><svg class="ic"><use href="#i-grid"/></svg>Catálogo</h2><div class="sec-sub">Use os filtros para achar mais rápido</div></div></div>
+    <div class="toolbar rv">
+      <div class="chips" id="chips">
+        <button class="chip on" data-p="todos">Todos</button>
+        <button class="chip" data-p="android"><svg class="ic"><use href="#i-android"/></svg>Android</button>
+        <button class="chip" data-p="pc"><svg class="ic"><use href="#i-monitor"/></svg>PC</button>
+        <button class="chip" data-p="ios"><svg class="ic"><use href="#i-phone"/></svg>iPhone</button>
+        <button class="chip" data-p="outro">Outros</button>
+        <button class="chip" data-p="fav"><svg class="ic"><use href="#i-heart"/></svg>Favoritos</button>
+      </div>
+      <select id="cat" aria-label="Categoria"></select>
+      <select id="sort" aria-label="Ordenar">
+        <option value="new">Mais recentes</option><option value="dl">Mais baixados</option><option value="az">A a Z</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty hidden" id="empty"><b>Nada por aqui ainda</b>Tente outra busca ou outro filtro.</div>
+
+    <div class="sec-head rv" id="community"><div><h2 class="sec-title"><svg class="ic"><use href="#i-users"/></svg>Comunidade</h2><div class="sec-sub">Tire dúvidas, sugira apps e acompanhe as novidades</div></div></div>
+    <div class="community rv">
+      <div class="tgcard">
+        <div class="big"><svg class="ic"><use href="#i-send"/></svg></div>
+        <div class="t"><h3>Grupo oficial no Telegram</h3><p>Avisos de novos jogos e apps em primeira mão, direto no seu celular.</p></div>
+        <a class="btn big" href="https://t.me/nicollawmods" target="_blank" rel="noopener">Entrar no Telegram<svg class="ic" style="margin:0 0 0 6px"><use href="#i-arrow"/></svg></a>
+      </div>
+      <h3 class="sub-title"><svg class="ic"><use href="#i-chat"/></svg>Grupos do WhatsApp</h3>
+      <div class="groups" id="groups"></div>
+    </div>
+
+    <div class="sec-head rv" id="faq"><div><h2 class="sec-title"><svg class="ic"><use href="#i-help"/></svg>Como instalar</h2></div></div>
+    <div class="faq rv">
+      <details><summary>Android (APK)</summary><p>Baixe o arquivo, abra e permita a instalação de fontes desconhecidas quando o Android pedir. Depois é só instalar.</p></details>
+      <details><summary>Windows (EXE)</summary><p>Baixe, execute o arquivo e siga o instalador. Se o Windows exibir um aviso do SmartScreen, clique em Mais informações e depois em Executar assim mesmo.</p></details>
+      <details><summary>iPhone (IPA)</summary><p>O IPA precisa ser instalado por assinatura, usando ferramentas como AltStore ou Sideloadly no computador. Ele não abre com toque direto como no Android.</p></details>
+      <details><summary>Preciso de conta para baixar?</summary><p>Não. A conta serve para salvar favoritos e contar seus downloads.</p></details>
+      <details><summary>Achei um link quebrado ou tenho uma dúvida</summary><p>Entre no grupo Tirar Dúvida no WhatsApp ou fale com a gente no Telegram. Também aceitamos sugestões de apps no grupo Chat Sugestões.</p></details>
+    </div>
+  </section>
+
+  <section id="viewAdmin" class="hidden">
+    <div class="sec-head"><div><h2 class="sec-title"><svg class="ic"><use href="#i-shield"/></svg>Painel admin</h2></div></div>
+    <div class="kpis">
+      <div class="kpi"><b id="kPosts">0</b><small>publicações</small></div>
+      <div class="kpi"><b id="kDl">0</b><small>downloads</small></div>
+      <div class="kpi"><b id="kUsers">0</b><small>contas criadas</small></div>
+      <div class="kpi"><b id="kAdmins">1</b><small>admins</small></div>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="chip on" data-t="tPublish">Publicar</button>
+      <button class="chip" data-t="tPosts">Publicações</button>
+      <button class="chip" data-t="tAdmins">Administradores</button>
+      <button class="chip" data-t="tGroup">Grupo admin</button>
+    </div>
+
+    <div id="tPublish" class="panel">
+      <h2 id="formTitle">Publicar jogo ou app</h2>
+      <form class="form" id="postForm">
+        <div class="two">
+          <label>Nome<input id="pTitle" required maxlength="80"></label>
+          <label>Versão<input id="pVersion" placeholder="ex: 1.2.0" maxlength="20"></label>
+        </div>
+        <div class="two">
+          <label>Plataforma
+            <select id="pPlat"><option value="android">Android (APK)</option><option value="pc">PC (EXE)</option><option value="ios">iPhone (IPA)</option><option value="outro">Outro</option></select>
+          </label>
+          <label>Categoria
+            <select id="pCat"><option>Jogo</option><option>Ação</option><option>Corrida</option><option>Aventura</option><option>Simulador</option><option>Ferramenta</option><option>Social</option><option>Outro</option></select>
+          </label>
+        </div>
+        <div class="two">
+          <label>Tamanho<input id="pSize" placeholder="ex: 120 MB" maxlength="20"></label>
+          <label>Requisitos<input id="pReq" placeholder="ex: Android 8 ou superior" maxlength="80"></label>
+        </div>
+        <label>Descrição<textarea id="pDesc" maxlength="1200"></textarea></label>
+        <label>O que há de novo (opcional)<textarea id="pLog" maxlength="800"></textarea></label>
+        <label>Link da imagem de capa (opcional)<input id="pImg" type="url" placeholder="https://..."></label>
+        <label>Links das capturas de tela, um por linha (opcional)<textarea id="pShots" placeholder="https://..."></textarea></label>
+        <label>Link de download (GitHub Releases, Drive, Mediafire...)<input id="pLink" type="url" required placeholder="https://..."></label>
+        <label style="display:flex;gap:10px;align-items:center;color:var(--text)"><input type="checkbox" id="pFeat" style="width:auto"> Destacar no topo do site</label>
+        <div style="display:flex;gap:10px"><button class="btn primary" type="submit" id="postBtn">Publicar</button><button class="btn hidden" type="button" id="cancelEdit">Cancelar edição</button></div>
+        <div class="msg" id="postMsg"></div>
+      </form>
+    </div>
+
+    <div id="tPosts" class="panel hidden"><h2>Publicações</h2><div id="adminPosts"></div></div>
+
+    <div id="tAdmins" class="panel hidden">
+      <h2>Administradores</h2>
+      <form class="form" id="adminForm">
+        <label>Usuário ou e-mail da conta que vai virar admin
+          <input id="aUser" required placeholder="a pessoa precisa ter criado conta antes">
+        </label>
+        <div><button class="btn primary" type="submit">Tornar admin</button></div>
+        <div class="msg" id="adminMsg"></div>
+      </form>
+      <div id="adminList" style="margin-top:14px"></div>
+    </div>
+
+    <div id="tGroup" class="panel hidden">
+      <h2>Grupo de administradores (WhatsApp)</h2>
+      <p class="note">Este link fica guardado no banco de dados e só aparece para quem é admin. Somente a conta dona pode alterar.</p>
+      <form class="form" id="groupForm">
+        <label>Link do grupo<input id="gLink" type="url" placeholder="https://chat.whatsapp.com/..."></label>
+        <div><button class="btn primary" type="submit">Salvar link</button></div>
+        <div class="msg" id="groupMsg"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div><h4>Nicollaw Mods</h4>Jogos e apps para Android, PC e iPhone num lugar só. Os arquivos são publicados pelos administradores, então baixe por sua conta e risco.</div>
+    <div><h4>Navegar</h4><a href="#catalog">Catálogo</a><a href="#community">Comunidade</a><a href="#faq">Como instalar</a></div>
+    <div><h4>Fale com a gente</h4><a href="https://t.me/nicollawmods" target="_blank" rel="noopener">Telegram</a><a id="fWa" href="#community">Grupos do WhatsApp</a></div>
+  </div>
+</footer>
+
+<div class="fab"><a class="tg" href="https://t.me/nicollawmods" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ic"><use href="#i-send"/></svg></a><a class="wa" href="#community" aria-label="Grupos do WhatsApp"><svg class="ic"><use href="#i-chat"/></svg></a></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="box">
+    <button class="xbtn" id="closeModal" aria-label="Fechar"><svg class="ic"><use href="#i-x"/></svg></button>
+    <h2 id="mTitle">Entrar</h2>
+    <form class="form" id="authForm">
+      <label>Usuário ou e-mail<input id="uName" required autocomplete="username"></label>
+      <label>Senha<input id="uPass" type="password" required minlength="6" autocomplete="current-password"></label>
+      <button class="btn primary" type="submit" id="mSubmit">Entrar</button>
+    </form>
+    <div style="margin:12px 0;text-align:center;color:var(--muted)">ou</div>
+    <button class="btn" style="width:100%" id="btnGoogle">Continuar com Google</button>
+    <div class="msg" id="authMsg"></div>
+    <div style="margin-top:8px;text-align:center"><button class="btn small ghost" id="toggleMode" type="button">Não tenho conta. Criar agora</button></div>
+  </div>
+</div>
+
+<div class="modal" id="detail" role="dialog" aria-modal="true"><div class="box wide" id="detailBox"></div></div>
+<div class="modal" id="lightbox"><img id="lbImg" alt="" style="max-width:100%;max-height:92vh;border-radius:12px"></div>
+<div class="toasts" id="toasts"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* ============ 1) COLE AQUI A CONFIGURAÇÃO DO SEU FIREBASE ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyAP_YrQtfOKa-gO8nncgilhDVQi7cJtkE8",
+  authDomain: "nicollaw-mods.firebaseapp.com",
+  projectId: "nicollaw-mods",
+  storageBucket: "nicollaw-mods.firebasestorage.app",
+  messagingSenderId: "505345092141",
+  appId: "G-Z1T00E4Z1J"
+};
+/* E-mail interno da conta dona. NÃO mude, e use o mesmo nas regras do Firestore. */
+const OWNER_EMAIL = "nicollawmods@nicollawmods.app";
+/* ===================================================================== */
+
+/* Grupos públicos (links de convite do WhatsApp são públicos por natureza) */
+const TELEGRAM = "https://t.me/nicollawmods";
+const GROUPS = [
+  {id:'android', icon:'android', title:'Apps Android', desc:'Novidades, pedidos e ajuda com APKs.', url:'https://chat.whatsapp.com/E2wCb616O5L6AJ4WJppVE7'},
+  {id:'pc', icon:'monitor', title:'Apps PC', desc:'Tudo sobre programas e jogos EXE para Windows.', url:'https://chat.whatsapp.com/IZG1BIs9XDB3Xz8eaeieS1'},
+  {id:'ios', icon:'phone', title:'Apps iPhone', desc:'IPAs, assinatura e instalação no iPhone.', url:'https://chat.whatsapp.com/BpOJLB2KVIKIzY1P6ivaW5'},
+  {id:'geral', icon:'chat', title:'Chat Geral', desc:'Bate-papo livre com a comunidade.', url:'https://chat.whatsapp.com/KSGWDNZE3WVEVybDZOb3Pa'},
+  {id:'duvidas', icon:'help', title:'Tirar Dúvida', desc:'Perguntas, link quebrado e suporte.', url:'https://chat.whatsapp.com/EtMPQawhD2U4efdEQkui6O'},
+  {id:'sugestoes', icon:'bulb', title:'Chat Sugestões', desc:'Sugira jogos e apps para o site.', url:'https://chat.whatsapp.com/LEVULdYZ415AiWBVWRVO7p'}
+];
+
+const $=id=>document.getElementById(id);
+const ic=(n,c)=>`<svg class="ic ${c||''}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const configured=firebaseConfig.apiKey!=="COLE_AQUI";
+if(!configured)$('setupWarn').classList.remove('hidden');
+let auth,db;
+if(configured){firebase.initializeApp(firebaseConfig);auth=firebase.auth();db=firebase.firestore()}
+
+let me=null,isAdmin=false,isOwner=false,posts=[],loaded=false,adminGroupUrl='';
+let filter='todos',category='Todas',sortBy='new',registerMode=false,editingId=null,slideIdx=0,slideTimer=null;
+let favs=[];try{favs=JSON.parse(localStorage.getItem('nm_favs')||'[]')}catch(e){}
+const PLAT={android:'Android (APK)',pc:'PC (EXE)',ios:'iPhone (IPA)',outro:'Outro'};
+const PICON={android:'android',pc:'monitor',ios:'phone',outro:'grid'};
+const COLORS=['#ff4f8b,#8b5bff','#5ee7ff,#4b6bff','#ffcf5e,#ff4f8b','#5eea9c,#2aa3c9','#b06bff,#ff6b6b','#ff9a5e,#ff4f8b'];
+
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+function safeUrl(u){try{const x=new URL((u||'').trim());return(x.protocol==='https:'||x.protocol==='http:')?x.href:''}catch(e){return''}}
+function grad(t){let h=0;for(const c of(t||'x'))h=(h*31+c.charCodeAt(0))>>>0;const[a,b]=COLORS[h%COLORS.length].split(',');return`linear-gradient(135deg,${a},${b})`}
+function toast(t,cls){const e=document.createElement('div');e.className='toast '+(cls||'');e.innerHTML=ic(cls==='err'?'alert':'check')+'<span>'+esc(t)+'</span>';$('toasts').appendChild(e);setTimeout(()=>e.remove(),3200)}
+function fmtN(n){n=Number(n)||0;return n>=1000?(n/1000).toFixed(n>=10000?0:1).replace('.0','')+' mil':String(n)}
+function isNew(p){const t=p.createdAt&&p.createdAt.toDate?p.createdAt.toDate().getTime():0;return t&&Date.now()-t<7*864e5}
+function coverHTML(p){const img=safeUrl(p.image);return`<div style="position:absolute;inset:0;background:${grad(p.title)}"></div><span style="position:relative">${esc((p.title||'?').charAt(0).toUpperCase())}</span>${img?`<img src="${esc(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:''}`}
+
+/* ---------- tema ---------- */
+function setTheme(t){document.documentElement.dataset.theme=t;$('themeIc').innerHTML=`<use href="#i-${t==='dark'?'sun':'moon'}"/>`;
+  document.querySelector('meta[name=theme-color]').content=t==='dark'?'#120f26':'#f6f4ff';try{localStorage.setItem('nm_theme',t)}catch(e){}}
+$('themeBtn').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+try{setTheme(localStorage.getItem('nm_theme')||'dark')}catch(e){setTheme('dark')}
+
+/* ---------- login ---------- */
+function usernameToEmail(v){v=v.trim();if(v.includes('@'))return v.toLowerCase();return v.toLowerCase().replace(/\s+/g,'')+'@nicollawmods.app'}
+function openModal(){$('modal').classList.add('open');$('authMsg').textContent='';setTimeout(()=>$('uName').focus(),50)}
+function closeModal(){$('modal').classList.remove('open')}
+$('btnLogin').onclick=openModal;$('closeModal').onclick=closeModal;
+$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+$('toggleMode').onclick=()=>{registerMode=!registerMode;
+  $('mTitle').textContent=registerMode?'Criar conta':'Entrar';$('mSubmit').textContent=registerMode?'Criar conta':'Entrar';
+  $('toggleMode').textContent=registerMode?'Já tenho conta. Entrar':'Não tenho conta. Criar agora';
+  $('uPass').autocomplete=registerMode?'new-password':'current-password';$('authMsg').textContent=''};
+function authMsg(t,c){const m=$('authMsg');m.textContent=t;m.className='msg '+(c||'')}
+function friendly(e){const c=e.code||'';
+  if(c.includes('email-already-in-use'))return'Esse usuário já existe. Tente entrar.';
+  if(c.includes('weak-password'))return'A senha precisa ter pelo menos 6 caracteres.';
+  if(c.includes('invalid-credential')||c.includes('wrong-password')||c.includes('user-not-found'))return'Usuário ou senha incorretos.';
+  if(c.includes('invalid-email'))return'Usuário ou e-mail inválido.';
+  if(c.includes('popup-closed'))return'Janela do Google fechada antes de terminar.';
+  if(c.includes('unauthorized-domain'))return'Domínio não autorizado (Firebase > Authentication > Settings > Authorized domains).';
+  if(c.includes('operation-not-allowed'))return'Esse método de login não está ativado no Firebase.';
+  return'Erro: '+(e.message||c)}
+async function saveUserDoc(u,name){await db.collection('users').doc(u.uid).set({uid:u.uid,email:u.email||'',username:(name||u.displayName||u.email||'').toString().toLowerCase(),name:name||u.displayName||u.email,createdAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true})}
+$('authForm').addEventListener('submit',async e=>{e.preventDefault();
+  if(!configured){authMsg('Configure o Firebase primeiro.','err');return}
+  const raw=$('uName').value,pass=$('uPass').value,email=usernameToEmail(raw);authMsg('Aguarde...');
+  try{
+    if(registerMode){const c=await auth.createUserWithEmailAndPassword(email,pass);await saveUserDoc(c.user,raw.trim());toast('Conta criada. Bem-vindo!','ok')}
+    else{await auth.signInWithEmailAndPassword(email,pass);toast('Login feito.','ok')}
+    closeModal();$('authForm').reset();
+  }catch(err){authMsg(friendly(err),'err')}});
+$('btnGoogle').onclick=async()=>{
+  if(!configured){authMsg('Configure o Firebase primeiro.','err');return}
+  try{const c=await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());await saveUserDoc(c.user);closeModal();toast('Login feito.','ok')}
+  catch(err){authMsg(friendly(err),'err')}};
+$('btnLogout').onclick=()=>{auth.signOut();$('menu').classList.add('hidden');toast('Você saiu da conta.')};
+$('avatar').onclick=e=>{e.stopPropagation();$('menu').classList.toggle('hidden')};
+document.addEventListener('click',e=>{if(!e.target.closest('.user'))$('menu').classList.add('hidden')});
+
+if(configured){
+  auth.onAuthStateChanged(async u=>{
+    me=u;isAdmin=false;isOwner=false;adminGroupUrl='';
+    if(u){isOwner=(u.email||'').toLowerCase()===OWNER_EMAIL;if(isOwner)isAdmin=true;
+      else{try{isAdmin=(await db.collection('admins').doc(u.uid).get()).exists}catch(e){}}
+      if(isAdmin){try{const d=await db.collection('config').doc('links').get();if(d.exists)adminGroupUrl=safeUrl(d.data().adminWhatsapp)}catch(e){}}}
+    renderHeader();renderGroups();if(!isAdmin)showView('home');
+  });
+  db.collection('posts').orderBy('createdAt','desc').onSnapshot(s=>{
+    posts=s.docs.map(d=>({id:d.id,...d.data()}));loaded=true;renderAll();
+    if(location.hash.startsWith('#app-')&&!$('detail').classList.contains('open'))openDetail(location.hash.slice(5),true);
+  },err=>{console.error(err);loaded=true;renderAll()});
+}
+function renderHeader(){
+  $('btnLogin').classList.toggle('hidden',!!me);$('userBox').classList.toggle('hidden',!me);
+  if(me){const nm=me.displayName||(me.email||'').replace('@nicollawmods.app','');
+    $('avatar').textContent=(nm||'?').charAt(0).toUpperCase();
+    $('menuWho').innerHTML=esc(nm)+(isAdmin?'<span class="badge-admin">ADMIN</span>':'')+'<small>'+esc((me.email||'').endsWith('@nicollawmods.app')?'Conta Nicollaw Mods':me.email)+'</small>'}
+  $('mAdmin').classList.toggle('hidden',!isAdmin);
+}
+$('mAdmin').onclick=()=>{$('menu').classList.add('hidden');showView('admin')};
+$('mFavs').onclick=()=>{$('menu').classList.add('hidden');showView('home');setFilter('fav');$('catalog').scrollIntoView()};
+
+function showView(v){$('viewHome').classList.toggle('hidden',v!=='home');$('viewAdmin').classList.toggle('hidden',v!=='admin');
+  if(v==='admin'){renderAdmin();loadAdmins();loadUsersCount();$('gLink').value=adminGroupUrl}window.scrollTo(0,0)}
+$('logo').onclick=()=>{showView('home');history.replaceState(null,'',location.pathname)};
+document.querySelectorAll('.links a,.fab .wa,#fWa').forEach(a=>a.addEventListener('click',()=>{if($('viewHome').classList.contains('hidden'))showView('home')}));
+
+/* ---------- comunidade ---------- */
+function renderGroups(){
+  let h=GROUPS.map(g=>`<a class="group" href="${esc(g.url)}" target="_blank" rel="noopener"><span class="gi">${ic(g.icon)}</span><span><b>${esc(g.title)}</b><small>${esc(g.desc)}</small><span class="join">Entrar no grupo ${ic('arrow')}</span></span></a>`).join('');
+  if(isAdmin){
+    h+= adminGroupUrl
+      ?`<a class="group admin" href="${esc(adminGroupUrl)}" target="_blank" rel="noopener"><span class="gi">${ic('lock')}</span><span><b>Só administradores</b><small>Grupo restrito da equipe. Só você e os outros admins veem este card.</small><span class="join">Entrar no grupo ${ic('arrow')}</span></span></a>`
+      :`<div class="group admin"><span class="gi">${ic('lock')}</span><span><b>Só administradores</b><small>Cadastre o link deste grupo no Painel admin, aba Grupo admin.</small></span></div>`}
+  $('groups').innerHTML=h}
+renderGroups();
+
+/* ---------- filtros ---------- */
+function setFilter(p){filter=p;document.querySelectorAll('#chips .chip').forEach(c=>c.classList.toggle('on',c.dataset.p===p));renderGrid()}
+$('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)setFilter(b.dataset.p)});
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>{setFilter(t.dataset.p);$('catalog').scrollIntoView()});
+$('search').addEventListener('input',()=>{if($('viewHome').classList.contains('hidden'))showView('home');renderGrid()});
+document.addEventListener('keydown',e=>{if(e.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();$('search').focus()}});
+$('cat').onchange=e=>{category=e.target.value;renderGrid()};
+$('sort').onchange=e=>{sortBy=e.target.value;renderGrid()};
+
+function renderAll(){renderStats();renderCats();renderShow();renderTop();renderGrid();if(isAdmin)renderAdmin()}
+function renderStats(){
+  const dl=posts.reduce((s,p)=>s+(Number(p.downloads)||0),0);$('stApps').textContent=posts.length;$('stDl').textContent=fmtN(dl);
+  const c=k=>posts.filter(p=>p.platform===k).length;
+  $('cAndroid').textContent=c('android')+(c('android')===1?' APK':' APKs');$('cPc').textContent=c('pc')+(c('pc')===1?' EXE':' EXEs');$('cIos').textContent=c('ios')+(c('ios')===1?' IPA':' IPAs')}
+function renderCats(){const cats=['Todas',...new Set(posts.map(p=>p.category).filter(Boolean))];
+  $('cat').innerHTML=cats.map(c=>`<option ${c===category?'selected':''}>${esc(c)}</option>`).join('')}
+
+function renderShow(){
+  const feat=posts.filter(p=>p.featured);const list=(feat.length?feat:posts).slice(0,5);clearInterval(slideTimer);
+  if(!list.length){$('show').innerHTML=`<div class="hero-empty"><div><b style="font-family:var(--display);font-size:1.4rem">${loaded?'Ainda sem publicações':'Carregando...'}</b><br>${loaded?'Os destaques aparecem aqui.':''}</div></div>`;return}
+  slideIdx=0;
+  $('show').innerHTML=list.map((p,i)=>`<div class="slide ${i===0?'on':''}" data-id="${esc(p.id)}">
+    <div class="bg" style="background:${grad(p.title)}">${esc((p.title||'?').charAt(0))}${safeUrl(p.image)?`<img src="${esc(safeUrl(p.image))}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:''}</div>
+    <div class="info"><span class="plat ${esc(p.platform)}">${ic(PICON[p.platform]||'grid')}${esc(PLAT[p.platform]||'Outro')}</span><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p><span class="btn primary small">Ver detalhes</span></div></div>`).join('')
+    +`<div class="dots">${list.map((_,i)=>`<button data-i="${i}" class="${i===0?'on':''}" aria-label="Destaque ${i+1}"></button>`).join('')}</div>`;
+  const go=i=>{slideIdx=i;$('show').querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('on',k===i));$('show').querySelectorAll('.dots button').forEach((s,k)=>s.classList.toggle('on',k===i))};
+  $('show').querySelectorAll('.dots button').forEach(b=>b.onclick=e=>{e.stopPropagation();go(+b.dataset.i)});
+  $('show').querySelectorAll('.slide').forEach(s=>s.onclick=()=>openDetail(s.dataset.id));
+  if(list.length>1&&!matchMedia('(prefers-reduced-motion:reduce)').matches)slideTimer=setInterval(()=>go((slideIdx+1)%list.length),5200)}
+
+function cardHTML(p,i){return`<article class="card" data-id="${esc(p.id)}" style="animation-delay:${Math.min(i,10)*40}ms">
+  <div class="cover">${isNew(p)?'<span class="new">NOVO</span>':''}<button class="fav ${favs.includes(p.id)?'on':''}" data-fav="${esc(p.id)}" aria-label="Favoritar">${ic('heart')}</button>${coverHTML(p)}</div>
+  <div class="body"><span class="plat ${esc(p.platform)}">${ic(PICON[p.platform]||'grid')}${esc(PLAT[p.platform]||'Outro')}</span>
+    <h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
+    <div class="meta">${p.version?`<span>v${esc(p.version)}</span>`:''}${p.size?`<span>${esc(p.size)}</span>`:''}<span>${ic('download')}${fmtN(p.downloads)}</span></div>
+    <span class="btn primary small">Ver e baixar</span></div></article>`}
+function renderTop(){const t=[...posts].filter(p=>(p.downloads||0)>0).sort((a,b)=>(b.downloads||0)-(a.downloads||0)).slice(0,8);
+  $('topBlock').classList.toggle('hidden',t.length<2);$('topRow').innerHTML=t.map(cardHTML).join('')}
+function filtered(){
+  const q=$('search').value.trim().toLowerCase();
+  let l=posts.filter(p=>(filter==='todos'||(filter==='fav'?favs.includes(p.id):p.platform===filter))&&(category==='Todas'||p.category===category)&&(!q||(p.title||'').toLowerCase().includes(q)||(p.description||'').toLowerCase().includes(q)));
+  if(sortBy==='dl')l.sort((a,b)=>(b.downloads||0)-(a.downloads||0));
+  if(sortBy==='az')l.sort((a,b)=>(a.title||'').localeCompare(b.title||''));
+  return l}
+function renderGrid(){
+  if(!loaded){$('grid').innerHTML='<div class="skel"></div>'.repeat(8);$('empty').classList.add('hidden');return}
+  const l=filtered();$('empty').classList.toggle('hidden',l.length>0);$('grid').innerHTML=l.map(cardHTML).join('')}
+function cardClick(e){const f=e.target.closest('[data-fav]');if(f){e.stopPropagation();toggleFav(f.dataset.fav);return}const c=e.target.closest('.card');if(c)openDetail(c.dataset.id)}
+$('grid').addEventListener('click',cardClick);$('topRow').addEventListener('click',cardClick);
+function toggleFav(id){favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];
+  try{localStorage.setItem('nm_favs',JSON.stringify(favs))}catch(e){}
+  toast(favs.includes(id)?'Adicionado aos favoritos':'Removido dos favoritos');renderGrid();renderTop()}
+
+/* ---------- detalhes ---------- */
+function openDetail(id,fromHash){
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  const shots=(p.shots||[]).map(safeUrl).filter(Boolean);
+  const how={android:'Abra o APK baixado e permita instalar de fontes desconhecidas.',pc:'Execute o EXE e siga o instalador.',ios:'O IPA é instalado via AltStore ou Sideloadly.',outro:''}[p.platform]||'';
+  const grp=GROUPS.find(g=>g.id===p.platform),help=GROUPS.find(g=>g.id==='duvidas');
+  $('detailBox').innerHTML=`<button class="xbtn" id="dClose" aria-label="Fechar">${ic('x')}</button>
+    <div class="dcover">${coverHTML(p)}</div>
+    <div class="dbody">
+      <div><span class="plat ${esc(p.platform)}">${ic(PICON[p.platform]||'grid')}${esc(PLAT[p.platform]||'Outro')}</span></div>
+      <h2>${esc(p.title)}</h2>
+      <div class="dgrid">
+        <div><small>Versão</small><b>${esc(p.version||'-')}</b></div><div><small>Tamanho</small><b>${esc(p.size||'-')}</b></div>
+        <div><small>Categoria</small><b>${esc(p.category||'-')}</b></div><div><small>Downloads</small><b>${fmtN(p.downloads)}</b></div>
+      </div>
+      <div class="acts">
+        <button class="btn primary big" id="dDl">${ic('download')}Baixar agora</button>
+        <button class="btn big" id="dFav">${ic('heart')}${favs.includes(p.id)?'Favorito':'Favoritar'}</button>
+        <button class="btn big ghost" id="dShare">${ic('copy')}Copiar link</button>
+      </div>
+      ${p.description?`<div><h4>Sobre</h4><p class="txt">${esc(p.description)}</p></div>`:''}
+      ${shots.length?`<div><h4>Capturas de tela</h4><div class="shots">${shots.map(s=>`<img src="${esc(s)}" alt="Captura de tela" loading="lazy" referrerpolicy="no-referrer">`).join('')}</div></div>`:''}
+      ${p.changelog?`<div><h4>O que há de novo</h4><p class="txt">${esc(p.changelog)}</p></div>`:''}
+      ${p.requirements?`<div><h4>Requisitos</h4><p class="txt">${esc(p.requirements)}</p></div>`:''}
+      ${how?`<div class="how">Como instalar: ${esc(how)}</div>`:''}
+      <div class="helpbar"><span>Precisa de ajuda?</span>
+        ${grp?`<a class="btn wa small" href="${esc(grp.url)}" target="_blank" rel="noopener">${ic('chat')}${esc(grp.title)}</a>`:''}
+        <a class="btn wa small" href="${esc(help.url)}" target="_blank" rel="noopener">${ic('help')}Tirar dúvida</a>
+        <a class="btn tg small" href="${TELEGRAM}" target="_blank" rel="noopener">${ic('send')}Telegram</a></div>
+    </div>`;
+  $('detail').classList.add('open');if(!fromHash)history.replaceState(null,'','#app-'+id);
+  $('dClose').onclick=closeDetail;
+  $('dFav').onclick=()=>{toggleFav(p.id);$('dFav').innerHTML=ic('heart')+(favs.includes(p.id)?'Favorito':'Favoritar')};
+  $('dShare').onclick=async()=>{const u=location.origin+location.pathname+'#app-'+id;try{await navigator.clipboard.writeText(u);toast('Link copiado','ok')}catch(e){prompt('Copie o link:',u)}};
+  $('dDl').onclick=async()=>{const l=safeUrl(p.link);if(!l){toast('Link indisponível','err');return}
+    window.open(l,'_blank','noopener');toast('Download iniciado','ok');
+    if(me){try{await db.collection('posts').doc(p.id).update({downloads:firebase.firestore.FieldValue.increment(1)})}catch(e){}}};
+  $('detailBox').querySelectorAll('.shots img').forEach(i=>i.onclick=()=>{$('lbImg').src=i.src;$('lightbox').classList.add('open')});
+}
+function closeDetail(){$('detail').classList.remove('open');history.replaceState(null,'',location.pathname)}
+$('detail').addEventListener('click',e=>{if(e.target.id==='detail')closeDetail()});
+$('lightbox').onclick=()=>$('lightbox').classList.remove('open');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeDetail();$('lightbox').classList.remove('open')}});
+
+/* ---------- admin ---------- */
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  document.querySelectorAll('#tabs .chip').forEach(c=>c.classList.toggle('on',c===b));
+  ['tPublish','tPosts','tAdmins','tGroup'].forEach(t=>$(t).classList.toggle('hidden',t!==b.dataset.t))});
+function renderAdmin(){
+  $('kPosts').textContent=posts.length;$('kDl').textContent=fmtN(posts.reduce((s,p)=>s+(Number(p.downloads)||0),0));
+  $('adminPosts').innerHTML=posts.length?posts.map(p=>`<div class="li"><span>${p.featured?ic('star','fill')+' ':''}${esc(p.title)} <small style="color:var(--muted)">(${esc(PLAT[p.platform]||'Outro')} • ${fmtN(p.downloads)} downloads)</small></span>
+    <span class="row"><button class="btn small" data-edit="${esc(p.id)}">${ic('edit')}Editar</button><button class="btn danger small" data-del="${esc(p.id)}">${ic('trash')}Excluir</button></span></div>`).join(''):'<small style="color:var(--muted)">Nada publicado ainda.</small>'}
+$('adminPosts').addEventListener('click',async e=>{
+  const b=e.target.closest('button');if(!b)return;const d=b.dataset.del,ed=b.dataset.edit;
+  if(d&&confirm('Excluir esta publicação?')){await db.collection('posts').doc(d).delete();toast('Publicação excluída')}
+  if(ed)startEdit(ed)});
+function startEdit(id){const p=posts.find(x=>x.id===id);if(!p)return;editingId=id;
+  $('pTitle').value=p.title||'';$('pVersion').value=p.version||'';$('pPlat').value=p.platform||'android';$('pCat').value=p.category||'Jogo';
+  $('pSize').value=p.size||'';$('pReq').value=p.requirements||'';$('pDesc').value=p.description||'';$('pLog').value=p.changelog||'';
+  $('pImg').value=p.image||'';$('pShots').value=(p.shots||[]).join('\n');$('pLink').value=p.link||'';$('pFeat').checked=!!p.featured;
+  $('formTitle').textContent='Editar publicação';$('postBtn').textContent='Salvar alterações';$('cancelEdit').classList.remove('hidden');
+  document.querySelector('#tabs .chip[data-t="tPublish"]').click();window.scrollTo(0,0)}
+function resetForm(){editingId=null;$('postForm').reset();$('formTitle').textContent='Publicar jogo ou app';$('postBtn').textContent='Publicar';$('cancelEdit').classList.add('hidden')}
+$('cancelEdit').onclick=resetForm;
+$('postForm').addEventListener('submit',async e=>{e.preventDefault();
+  const m=$('postMsg'),link=safeUrl($('pLink').value);
+  if(!link){m.textContent='Link de download inválido.';m.className='msg err';return}
+  const data={title:$('pTitle').value.trim(),version:$('pVersion').value.trim(),platform:$('pPlat').value,category:$('pCat').value,
+    size:$('pSize').value.trim(),requirements:$('pReq').value.trim(),description:$('pDesc').value.trim(),changelog:$('pLog').value.trim(),
+    image:safeUrl($('pImg').value),shots:$('pShots').value.split('\n').map(safeUrl).filter(Boolean).slice(0,8),link,featured:$('pFeat').checked};
+  try{
+    if(editingId){await db.collection('posts').doc(editingId).update(data);toast('Alterações salvas','ok')}
+    else{await db.collection('posts').add({...data,downloads:0,author:me.uid,createdAt:firebase.firestore.FieldValue.serverTimestamp()});toast('Publicado no site','ok')}
+    resetForm();m.textContent='';
+  }catch(err){m.textContent='Não foi possível salvar: '+err.message;m.className='msg err'}});
+
+$('adminForm').addEventListener('submit',async e=>{e.preventDefault();
+  const m=$('adminMsg'),v=$('aUser').value.trim().toLowerCase();
+  try{
+    let s=await db.collection('users').where('username','==',v).limit(1).get();
+    if(s.empty)s=await db.collection('users').where('email','==',usernameToEmail(v)).limit(1).get();
+    if(s.empty){m.textContent='Conta não encontrada. A pessoa precisa criar a conta primeiro.';m.className='msg err';return}
+    const u=s.docs[0].data();
+    await db.collection('admins').doc(u.uid).set({uid:u.uid,name:u.name||u.username,email:u.email||'',by:me.uid});
+    m.textContent=(u.name||u.username)+' agora é admin.';m.className='msg ok';$('adminForm').reset();loadAdmins();
+  }catch(err){m.textContent='Erro: '+err.message;m.className='msg err'}});
+async function loadAdmins(){if(!isAdmin)return;
+  const s=await db.collection('admins').get();$('kAdmins').textContent=s.size+1;
+  $('adminList').innerHTML=s.docs.length?s.docs.map(d=>{const a=d.data();return`<div class="li"><span>${esc(a.name||a.email)}</span><button class="btn danger small" data-rm="${esc(d.id)}">${ic('trash')}Remover</button></div>`}).join(''):'<small style="color:var(--muted)">Nenhum admin extra além da conta dona.</small>'}
+async function loadUsersCount(){try{const s=await db.collection('users').get();$('kUsers').textContent=s.size}catch(e){}}
+$('adminList').addEventListener('click',async e=>{const b=e.target.closest('button');const id=b&&b.dataset.rm;if(!id)return;
+  if(confirm('Remover este admin?')){await db.collection('admins').doc(id).delete();loadAdmins();toast('Admin removido')}});
+$('groupForm').addEventListener('submit',async e=>{e.preventDefault();
+  const m=$('groupMsg'),url=safeUrl($('gLink').value);
+  if(!url){m.textContent='Link inválido.';m.className='msg err';return}
+  try{await db.collection('config').doc('links').set({adminWhatsapp:url},{merge:true});adminGroupUrl=url;renderGroups();m.textContent='Link salvo.';m.className='msg ok'}
+  catch(err){m.textContent='Só a conta dona pode salvar: '+err.message;m.className='msg err'}});
+
+/* ---------- animação ao rolar ---------- */
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.08});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el))}else document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+
+renderGrid();renderShow();
+</script>
+</body>
+</html>
